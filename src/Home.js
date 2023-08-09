@@ -1,18 +1,20 @@
+import {useState} from "react";
+
 const Home = () => {
+	const [name, setName] = useState("mario"); // This is a state hook,
+	// which updates components on the UI when updated
 
     const handleClick = (e) => {
         console.log("Hello!");
+		setName("luigi")
     }
 
-    const handleClickString = (e, name) => {
-        console.log(e.screenX, name)
-    }
 
 	return (
 		<div className="home">
 			<h2>Homepage</h2>
+			<p>{name}</p>
             <button onClick={handleClick}>Click me</button>
-            <button onClick={(e) => handleClickString(e,"YOOOO!!!")}>Click me too!</button>
 		</div>
 	);
 }
