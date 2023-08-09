@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import NavBar from './NavBar'; // This is another component that is imported
+import Home from './Home';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	// This is JSX, not HTML
+	// Curly braces denote the use of a variable inside JSX
+	return (
+		<div className="App">
+			<NavBar/>
+			<div className="content">
+				<Home/>
+			</div>
+		</div>
+	);
 }
 
-export default App;
+export default App; // Export the template so it can be used elsewhere
