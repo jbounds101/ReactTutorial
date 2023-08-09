@@ -1,4 +1,5 @@
 import {useState} from "react";
+import BlogList from "./BlogList";
 
 const Home = () => {
 
@@ -9,14 +10,10 @@ const Home = () => {
 	])
 
 	// The key inside div must be unique
+	// blogs={} passes the prop into bloglist
 	return (
 		<div className="home">
-			{blogs.map((blog) => (
-				<div className="blog-preview" key={blog.id}>
-					<h2>{ blog.title }</h2>
-					<p>Written by { blog.author }</p>
-				</div>
-			))}
+			<BlogList blogs={blogs} title="Silly Blog!" />
 		</div>
 	);
 }
