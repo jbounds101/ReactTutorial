@@ -3,35 +3,25 @@ import BlogList from "./BlogList";
 
 const Home = () => {
 
-	const [blogs, setBlogs] = useState([
-		{ title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-		{ title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-		{ title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-	])
+	const [blogs, setBlogs] = useState(null)
 
 	const [name, setName] = useState("mario")
 
-	const handleDelete = (id) => {
-		const newBlogs = blogs.filter((blog) => blog.id !== id);
-		setBlogs(newBlogs);
-	}
-
 	// Runs for the first render
 	useEffect(() => {
-		console.log("use effect ran")
+		fetch("http://localhost:8000/blogs").then(res => {
+			return res.json();
+		}).then((data) => {
+			console.log(data)
+			setBlogs(data)
+		});
 	}, [])
-
-	// Runs when name is changed
-	useEffect(() => {
-		console.log("name changed")
-	}, [name])
 
 	// The key inside div must be unique
 	// blogs={} passes the prop into bloglist
 	return (
 		<div className="home">
-			<BlogList blogs={blogs} title="Silly Blog!" handleDelete={handleDelete} />
-			<button onClick={() => setName("luigi")}>Change name</button>
+			{blogs && <BlogList blogs={blogs} title="Silly Blog!"/>}
 		</div>
 	);
 }
