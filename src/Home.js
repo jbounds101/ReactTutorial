@@ -9,22 +9,29 @@ const Home = () => {
 		{ title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
 	])
 
+	const [name, setName] = useState("mario")
+
 	const handleDelete = (id) => {
 		const newBlogs = blogs.filter((blog) => blog.id !== id);
 		setBlogs(newBlogs);
 	}
 
-	// Runs for every render, beware of rerendering because this can cause a loop
+	// Runs for the first render
 	useEffect(() => {
 		console.log("use effect ran")
-	})
+	}, [])
+
+	// Runs when name is changed
+	useEffect(() => {
+		console.log("name changed")
+	}, [name])
 
 	// The key inside div must be unique
 	// blogs={} passes the prop into bloglist
 	return (
 		<div className="home">
 			<BlogList blogs={blogs} title="Silly Blog!" handleDelete={handleDelete} />
-			<BlogList blogs={blogs.filter((blog) => blog.author === "mario")} title="Mario's Blog!" handleDelete={handleDelete} />
+			<button onClick={() => setName("luigi")}>Change name</button>
 		</div>
 	);
 }
