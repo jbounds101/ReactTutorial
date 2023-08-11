@@ -12,6 +12,6 @@ const NavBar = () => {
             </div>
         </nav>
     );
-}
+};
  
 export default NavBar; // This is a component that is being exported
