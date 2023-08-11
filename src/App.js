@@ -2,6 +2,7 @@ import NavBar from './NavBar'; // This is another component that is imported
 import Home from './Home';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Create from "./Create";
+import BlogDetails from "./BlogDetails";
 
 function App() {
 	// This is JSX, not HTML
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Home/>}/>
 						<Route path="/create" element={<Create/>}/>
+						<Route path="/blogs/:id" element={<BlogDetails/>}/>
 					</Routes>
 				</div>
 			</div>
