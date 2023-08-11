@@ -4,16 +4,15 @@ import BlogList from "./BlogList";
 const Home = () => {
 
 	const [blogs, setBlogs] = useState(null)
-
-	const [name, setName] = useState("mario")
+	const [isLoading, setIsLoading] = useState(true)
 
 	// Runs for the first render
 	useEffect(() => {
 		fetch("http://localhost:8000/blogs").then(res => {
 			return res.json();
 		}).then((data) => {
-			console.log(data)
 			setBlogs(data)
+			setIsLoading(false)
 		});
 	}, [])
 
@@ -21,6 +20,7 @@ const Home = () => {
 	// blogs={} passes the prop into bloglist
 	return (
 		<div className="home">
+			{isLoading && <div>Loading...</div>}
 			{blogs && <BlogList blogs={blogs} title="Silly Blog!"/>}
 		</div>
 	);
