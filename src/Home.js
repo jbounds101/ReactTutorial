@@ -1,29 +1,11 @@
 import {useState, useEffect} from "react";
 import BlogList from "./BlogList";
+import useFetch from "./useFetch";
 
 const Home = () => {
 
-	const [blogs, setBlogs] = useState(null);
-	const [isLoading, setIsLoading] = useState(true);
-	const [error, setError] = useState(null);
-
-	// Runs for the first render
-	useEffect(() => {
-		fetch("http://localhost:80001/blogs").then(res => {
-			if (!res.ok) {
-				throw Error("Could not fetch data from localhost:8000");
-			}
-			return res.json();
-		}).then((data) => {
-			setBlogs(data);
-			setIsLoading(false);
-			setError(null)
-		}).catch(e => {
-			// This occurs if loading fails
-			setIsLoading(false);
-			setError(e.message);
-		})
-	}, []);
+	// Data is renamed to blogs in the context of this item
+	const {data: blogs, isLoading, error} = useFetch("http://localhost:8000/blogs");
 
 	// The key inside div must be unique
 	// blogs={} passes the prop into bloglist
