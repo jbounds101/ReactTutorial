@@ -1,17 +1,25 @@
 import NavBar from './NavBar'; // This is another component that is imported
 import Home from './Home';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Create from "./Create";
 
 function App() {
-
 	// This is JSX, not HTML
 	// Curly braces denote the use of a variable inside JSX
+
+	// You can do wildcarding inside path
 	return (
-		<div className="App">
-			<NavBar/>
-			<div className="content">
-				<Home/>
+		<Router>
+			<div className="App">
+				<NavBar/>
+				<div className="content">
+					<Routes>
+						<Route path="/" element={<Home/>}/>
+						<Route path="/create" element={<Create/>}/>
+					</Routes>
+				</div>
 			</div>
-		</div>
+		</Router>
 	);
 }
 
