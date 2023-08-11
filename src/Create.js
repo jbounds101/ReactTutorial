@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 
 const Create = () => {
 	const [title, setTitle] = useState("");
 	const [body, setBody] = useState("");
 	const [author, setAuthor] = useState("mario");
 	const [isLoading, setIsLoading] = useState(false);
+	const navigate = useNavigate();
 
 	const handleSubmit = (e) => {
 		e.preventDefault(); // Stops the default refresh
@@ -19,7 +21,9 @@ const Create = () => {
 		}).then(r => {
 			console.log("New blog created");
 			setIsLoading(false);
+			navigate("/")
 		})
+
 	};
 
 	return (
